@@ -65,15 +65,9 @@ class ArticleController extends Controller
     public function destroy(Article $article)
     {
         $user = \Auth::user();
-        if($user->can('delete-category'))
-        {
-            $article->delete();
+        
+        $article->delete();
 
-            return redirect()->route('admin.articles.index')->with('success', __('Article deleted successfully'));
-        }
-        else
-        {
-            return view('403');
-        }
+        return redirect()->route('admin.articles.index')->with('success', __('Article deleted successfully'));
     }
 }
